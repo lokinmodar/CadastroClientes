@@ -6,7 +6,7 @@ android:id="@+id/myCoordinatorLayout"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-tools:context=".activities.ListaActivity">
+tools:context=".data.activities.ListaActivity">
 
 <android.support.design.widget.AppBarLayout
     android:id="@+id/appBar"
@@ -56,7 +56,7 @@ tools:context=".activities.ListaActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context="br.com.theoldpinkeye.notes.MainActivity">
+        tools:context=".data.activities.ListaActivity">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/myRView"
@@ -70,7 +70,7 @@ tools:context=".activities.ListaActivity">
 
 </android.support.v4.widget.NestedScrollView>
 <android.support.design.widget.FloatingActionButton
-    android:id="@+id/floatingActionButton"
+    android:id="@+id/cadastraFloatingActionButton"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|end"

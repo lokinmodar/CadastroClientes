@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.TelaInicialActivity">
+        <activity android:name=".data.activities.TelaInicialActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CadastraActivity" />
-        <activity android:name=".activities.ListaActivity"></activity>
+        <activity android:name=".data.activities.CadastraActivity" />
+        <activity android:name=".data.activities.ListaActivity" />
     </application>
 
 </manifest>
