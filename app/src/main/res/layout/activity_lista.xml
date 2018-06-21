@@ -79,7 +79,6 @@ tools:context=".data.activities.ListaActivity">
     android:focusable="true"
     android:src="@drawable/ic_add_white_48dp"
     app:backgroundTint="@android:color/holo_red_dark"
-
     app:layout_anchorGravity="bottom|end" />
 
 
