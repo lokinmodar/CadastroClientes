@@ -6,6 +6,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import br.com.dantesouzaesouza.cadastroclientes.R;
 
@@ -21,12 +26,19 @@ public class ListaActivity extends AppCompatActivity {
     }
 
     public void criaTela(){
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ImageView toolbarImage = findViewById(R.id.toolbarImage);
+
+        Glide.with(this)
+                .load("https://source.unsplash.com/random")
+                .apply(RequestOptions.centerCropTransform())
+                .into(toolbarImage);
+
         fab = findViewById(R.id.cadastraFloatingActionButton);
-        fab.setOnClickListener((view) -> {
-                    Snackbar.make(view, "Cadastrar novo cliente?", Snackbar.LENGTH_LONG)
-                            .setAction("Sim!", v -> chamaCadastro()).setActionTextColor(Color.YELLOW)
-                            .show();
-                }
+        fab.setOnClickListener((view) -> Snackbar.make(view, "Cadastrar novo cliente?", Snackbar.LENGTH_LONG)
+                .setAction("Sim!", v -> chamaCadastro()).setActionTextColor(Color.YELLOW)
+                .show()
         );
     }
 
@@ -36,4 +48,10 @@ public class ListaActivity extends AppCompatActivity {
         finishAffinity();
     }
 
+    @Override
+    public void onBackPressed(){
+        Intent mainIntent = new Intent(getApplicationContext(), TelaInicialActivity.class);
+        startActivity(mainIntent);
+        finish();
+    }
 }

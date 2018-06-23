@@ -18,12 +18,12 @@ public class PersonViewHolder extends RecyclerView.ViewHolder implements View.On
     @BindView(R.id.telefoneTextView) TextView telefoneTextView;
     @BindView(R.id.cidadeTextView) TextView cidadeTextView;
     @BindView(R.id.codigoTextView) TextView codigoTextView;
+    @BindView(R.id.dateTextView) TextView dateTextView;
 
     public PersonViewHolder(View itemView) {
         super(itemView);
         itemView.setOnLongClickListener(this);
         ButterKnife.bind(this, itemView);
-
 
     }
 

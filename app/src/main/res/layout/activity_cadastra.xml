@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".data.activities.CadastraActivity">
+<android.support.v4.widget.NestedScrollView
+    android:id="@+id/appbarLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorButtonNormal"
+    app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="293dp"
         android:layout_margin="4dp"
         android:layout_marginEnd="4dp"
@@ -16,10 +24,7 @@
         android:layout_marginTop="4dp"
         android:columnCount="1"
         android:padding="8dp"
-        android:rowCount="14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:rowCount="14" >
 
         <TextView
             android:id="@+id/tituloNota"
@@ -102,5 +107,18 @@
             android:text="Cidade" />
 
     </GridLayout>
+</android.support.v4.widget.NestedScrollView>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/salvaFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_add_white_48dp"
+        app:backgroundTint="@android:color/holo_red_dark"
+        app:layout_anchorGravity="bottom|end"  />
+
+</android.support.design.widget.CoordinatorLayout>
