@@ -7,107 +7,118 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".data.activities.CadastraActivity">
-<android.support.v4.widget.NestedScrollView
-    android:id="@+id/appbarLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?android:attr/colorButtonNormal"
-    app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-    <GridLayout
-        android:id="@+id/gridLayout"
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="293dp"
+        android:layout_height="match_parent"
+        android:background="?android:attr/colorButtonNormal"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:columnCount="1"
-        android:padding="8dp"
-        android:rowCount="14" >
+        app:cardCornerRadius="3dp"
+        app:cardElevation="3dp">
 
-        <TextView
-            android:id="@+id/tituloNota"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:text="Preencha Informações Abaixo:"
-            android:textStyle="bold|italic" />
-
-        <View
+        <GridLayout
+            android:id="@+id/gridLayout"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_column="0"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
-            android:layout_row="1"
-            android:background="@color/colorAccent" />
+            android:layout_height="293dp"
+            android:layout_margin="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@color/cardview_light_background"
+            android:columnCount="1"
+            android:padding="8dp"
+            android:rowCount="14">
 
-        <TextView
-            android:id="@+id/dateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_gravity="top|end"
-            android:layout_row="2"
-            android:text="TextView"
-            android:textSize="10sp"
-            android:textStyle="bold|italic"
-            android:visibility="visible" />
+            <TextView
+                android:id="@+id/tituloNota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:text="Preencha Informações Abaixo:"
+                android:textStyle="bold|italic" />
 
-        <EditText
-            android:id="@+id/nomeEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="3"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Nome" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:background="@color/colorAccent" />
 
-        <EditText
-            android:id="@+id/cpfEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="4"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="CPF" />
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_gravity="top|end"
+                android:text="TextView"
+                android:textSize="10sp"
+                android:textStyle="bold|italic"
+                android:visibility="visible" />
 
-        <EditText
-            android:id="@+id/idadeEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="5"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Idade" />
+            <EditText
+                android:id="@+id/nomeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:ems="10"
+                android:hint="Nome Completo"
+                android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/telefoneEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="6"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Telefone" />
+            <EditText
+                android:id="@+id/cpfEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_column="0"
+                android:ems="10"
+                android:hint="CPF"
+                android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/cidadeEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="7"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Cidade" />
+            <EditText
+                android:id="@+id/idadeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="5"
+                android:layout_column="0"
+                android:ems="10"
+                android:hint="Idade"
+                android:inputType="textPersonName" />
 
-    </GridLayout>
-</android.support.v4.widget.NestedScrollView>
+            <EditText
+                android:id="@+id/telefoneEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="6"
+                android:layout_column="0"
+                android:ems="10"
+                android:hint="Telefone"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/cidadeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="7"
+                android:layout_column="0"
+                android:ems="10"
+                android:hint="Cidade"
+                android:inputType="textPersonName" />
+
+        </GridLayout>
+    </android.support.v7.widget.CardView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/salvaFloatingActionButton"
