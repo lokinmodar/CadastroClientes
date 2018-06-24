@@ -28,6 +28,7 @@ public class ListaActivity extends AppCompatActivity {
     public void criaTela(){
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Lista de Clientes");
         ImageView toolbarImage = findViewById(R.id.toolbarImage);
 
         Glide.with(this)

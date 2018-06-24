@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
+import br.com.concrete.canarinho.watcher.MascaraNumericaTextWatcher;
 import br.com.dantesouzaesouza.cadastroclientes.R;
 import butterknife.BindView;
 
@@ -16,9 +18,9 @@ public class CadastraActivity extends AppCompatActivity {
 
     @BindView(R.id.dateTextView) TextView dateTextView;
     @BindView(R.id.nomeEditText) EditText nomeEditText;
-    @BindView(R.id.cpfEditText) EditText cpfEditText;
+    EditText cpfEditText;
     @BindView(R.id.idadeEditText) EditText idadeEditText;
-    @BindView(R.id.telefoneEditText) EditText telefoneEditText;
+    EditText telefoneEditText;
     @BindView(R.id.cidadeEditText) EditText cidadeEditText;
     FloatingActionButton fab;
 
@@ -37,6 +39,10 @@ public class CadastraActivity extends AppCompatActivity {
                             .show();
                 }
         );
+        cpfEditText = findViewById(R.id.cpfEditText);
+        cpfEditText.addTextChangedListener(new MascaraNumericaTextWatcher("###.###.###-##"));
+        telefoneEditText = findViewById(R.id.telefoneEditText);
+        telefoneEditText.addTextChangedListener(new MascaraNumericaTextWatcher("(##) #####-####"));
     }
 
     public void salvaDados(){
