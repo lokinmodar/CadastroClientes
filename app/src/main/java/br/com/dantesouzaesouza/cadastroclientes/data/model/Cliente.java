@@ -5,22 +5,19 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
-public class Cliente implements Serializable, Parcelable {
+public class Cliente implements Parcelable {
 
 
    String nome;
-   int codCliente;
    long cpf;
    int idade;
    long telefone;
    String cidade;
    long dataCadastro;
 
-
-
    protected Cliente(Parcel in) {
       nome = in.readString();
-      codCliente = in.readInt();
+
       cpf = in.readLong();
       idade = in.readInt();
       telefone = in.readLong();
@@ -40,20 +37,24 @@ public class Cliente implements Serializable, Parcelable {
       }
    };
 
+   public Cliente( String nome, long cpf, int idade, long telefone, String cidade, long dataCadastro) {
+      this.nome = nome;
+
+      this.cpf = cpf;
+      this.idade = idade;
+      this.telefone = telefone;
+      this.cidade = cidade;
+      this.dataCadastro = dataCadastro;
+   }
+
+
+
    public String getNome() {
       return nome;
    }
 
    public void setNome(String nome) {
       this.nome = nome;
-   }
-
-   public int getCodCliente() {
-      return codCliente;
-   }
-
-   public void setCodCliente(int codCliente) {
-      this.codCliente = codCliente;
    }
 
    public long getCpf() {
@@ -96,10 +97,20 @@ public class Cliente implements Serializable, Parcelable {
       this.dataCadastro = dataCadastro;
    }
 
-   public static Creator<Cliente> getCREATOR() {
-      return CREATOR;
-   }
 
+
+
+   @Override
+   public String toString() {
+      return "Cliente{" +
+              "nome='" + nome + '\'' +
+              ", cpf=" + cpf +
+              ", idade=" + idade +
+              ", telefone=" + telefone +
+              ", cidade='" + cidade + '\'' +
+              ", dataCadastro=" + dataCadastro +
+              '}';
+   }
 
    @Override
    public int describeContents() {
@@ -109,25 +120,11 @@ public class Cliente implements Serializable, Parcelable {
    @Override
    public void writeToParcel(Parcel dest, int flags) {
       dest.writeString(nome);
-      dest.writeInt(codCliente);
       dest.writeLong(cpf);
       dest.writeInt(idade);
       dest.writeLong(telefone);
       dest.writeString(cidade);
       dest.writeLong(dataCadastro);
-   }
-
-   @Override
-   public String toString() {
-      return "Cliente{" +
-              "nome='" + nome + '\'' +
-              ", codCliente=" + codCliente +
-              ", cpf=" + cpf +
-              ", idade=" + idade +
-              ", telefone=" + telefone +
-              ", cidade='" + cidade + '\'' +
-              ", dataCadastro=" + dataCadastro +
-              '}';
    }
 }
 

@@ -85,7 +85,7 @@
                 android:layout_column="0"
                 android:ems="10"
                 android:hint="CPF"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/idadeEditText"
@@ -95,7 +95,7 @@
                 android:layout_column="0"
                 android:ems="10"
                 android:hint="Idade"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/telefoneEditText"
@@ -105,7 +105,7 @@
                 android:layout_column="0"
                 android:ems="10"
                 android:hint="Telefone"
-                android:inputType="textPersonName" />
+                android:inputType="phone" />
 
             <EditText
                 android:id="@+id/cidadeEditText"

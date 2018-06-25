@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -47,7 +48,6 @@ public class MeuRecyclerViewAdapter extends RecyclerView.Adapter<PersonViewHolde
         holder.idadeTextView.setText(String.valueOf(clientes.get(position).getIdade()));
         holder.telefoneTextView.setText(String.valueOf(clientes.get(position).getTelefone()));
         holder.cidadeTextView.setText(clientes.get(position).getCidade());
-        holder.codigoTextView.setText(String.valueOf(clientes.get(position).getCodCliente()));
         holder.dateTextView.setText("Salvo em: " + convertTime(clientes.get(position).getDataCadastro()));
 
     }
@@ -61,5 +61,9 @@ public class MeuRecyclerViewAdapter extends RecyclerView.Adapter<PersonViewHolde
         Date date = new Date(time);
         Format format = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
         return format.format(date);
+    }
+
+    public void removeItem(int position){
+        clientes.remove(position);
     }
 }
