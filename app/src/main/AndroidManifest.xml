@@ -20,8 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".data.activities.CadastraActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".data.activities.ListaActivity" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".data.activities.ListaActivity"  />
     </application>
 
 </manifest>

@@ -14,9 +14,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.com.concrete.canarinho.formatador.Formatador;
+import br.com.concrete.canarinho.formatador.FormatadorCPFCNPJ;
 import br.com.dantesouzaesouza.cadastroclientes.R;
 
-public class MeuRecyclerViewAdapter extends RecyclerView.Adapter<PersonViewHolder> {
+public class MeuRecyclerViewAdapter extends RecyclerView.Adapter<PersonViewHolder> { //classe de apoio ao RecyclerView
     private List<Cliente> clientes = new ArrayList<>();
     static AdapterView.OnItemLongClickListener itemLongClickListener;
 
@@ -43,11 +45,11 @@ public class MeuRecyclerViewAdapter extends RecyclerView.Adapter<PersonViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
-        holder.nomeTextView.setText(clientes.get(position).getNome());
-        holder.cpfTextView.setText(String.valueOf(clientes.get(position).getCpf()));
-        holder.idadeTextView.setText(String.valueOf(clientes.get(position).getIdade()));
-        holder.telefoneTextView.setText(String.valueOf(clientes.get(position).getTelefone()));
-        holder.cidadeTextView.setText(clientes.get(position).getCidade());
+        holder.nomeTextView.setText("Nome: " + clientes.get(position).getNome());
+        holder.cpfTextView.setText("CPF: " + Formatador.CPF.formata(String.valueOf(clientes.get(position).getCpf())));
+        holder.idadeTextView.setText("Idade: " + String.valueOf(clientes.get(position).getIdade()));
+        holder.telefoneTextView.setText("Telefone: " + Formatador.TELEFONE.formata(String.valueOf(clientes.get(position).getTelefone())));
+        holder.cidadeTextView.setText("Cidade: "+ clientes.get(position).getCidade());
         holder.dateTextView.setText("Salvo em: " + convertTime(clientes.get(position).getDataCadastro()));
 
     }

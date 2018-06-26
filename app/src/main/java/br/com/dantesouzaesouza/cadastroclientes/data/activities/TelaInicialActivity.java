@@ -25,6 +25,21 @@ import br.com.dantesouzaesouza.cadastroclientes.R;
 import br.com.dantesouzaesouza.cadastroclientes.data.model.Cliente;
 
 
+
+//******************************************************
+
+//Instituto Federal de São Paulo - Campus Sertãozinho
+
+//Disciplina......: M4DADM
+
+//Programação de Computadores e Dispositivos Móveis
+
+//Aluno...........: Dante Souza e Souza
+
+//******************************************************
+
+
+
 public class TelaInicialActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
@@ -41,9 +56,10 @@ public class TelaInicialActivity extends AppCompatActivity {
         clientes = new ArrayList<>();
         carregado = false;
         criaTela();
+
     }
 
-    public void criaTela(){
+    public void criaTela(){ //Cria UI da tela principal do app
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ImageView toolbarImage = findViewById(R.id.toolbarImage);
@@ -59,9 +75,10 @@ public class TelaInicialActivity extends AppCompatActivity {
                 .setAction("Sim!", v -> chamaLista()).setActionTextColor(Color.YELLOW)
                 .show()
         );
+
     }
 
-    public void chamaLista(){
+    public void chamaLista(){ //Chama a lista de itens cadastrados
         operacoesBanco();
         carregaDoBanco();
         
@@ -75,11 +92,13 @@ public class TelaInicialActivity extends AppCompatActivity {
         finishAffinity();
     }
 
-    public void operacoesBanco(){
+    public void operacoesBanco(){ //Abre o banco de dados para operações
         try{
             meuBanco = getApplicationContext().openOrCreateDatabase("Clientes",MODE_PRIVATE, null);
             if (meuBanco.isOpen()) {
-                meuBanco.execSQL("CREATE TABLE IF NOT EXISTS clientes (codigo PRIMARY KEY, nome VARCHAR, cpf BIGINT, idade INTEGER, telefone BIGINT, cidade VARCHAR, data BIGINT)");
+                meuBanco.execSQL("CREATE TABLE IF NOT EXISTS clientes (codigo PRIMARY KEY AUTOINCREMENT, nome VARCHAR, cpf BIGINT, idade INTEGER, telefone BIGINT, cidade VARCHAR, data BIGINT)");
+
+                //meuBanco.execSQL("DELETE FROM clientes");
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -87,7 +106,7 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     }
 
-    public void carregaDoBanco() {
+    public void carregaDoBanco() { // Carrega dados co banco e coloca num ArrayList que será enviado à atividade de Lista de cadastrados
 
         Cursor c = meuBanco.rawQuery("SELECT * FROM clientes", null);
 
@@ -104,7 +123,7 @@ public class TelaInicialActivity extends AppCompatActivity {
 
         try {
             while (c.moveToNext()) {
-                Cliente item = new Cliente(c.getString(nomeIndex), c.getLong(cpfIndex), c.getInt(idadeIndex), c.getLong(telefoneIndex), c.getString(cidadeIndex), c.getLong(dataIndex));
+                Cliente item = new Cliente(c.getInt(codigoIndex), c.getString(nomeIndex), c.getLong(cpfIndex), c.getInt(idadeIndex), c.getLong(telefoneIndex), c.getString(cidadeIndex), c.getLong(dataIndex));
                 clientes.add(item);
                 Log.e("Item", item.toString());
 

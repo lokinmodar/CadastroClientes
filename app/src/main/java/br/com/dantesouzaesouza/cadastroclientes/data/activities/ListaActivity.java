@@ -2,6 +2,8 @@ package br.com.dantesouzaesouza.cadastroclientes.data.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -28,12 +30,28 @@ import br.com.dantesouzaesouza.cadastroclientes.R;
 import br.com.dantesouzaesouza.cadastroclientes.data.model.Cliente;
 import br.com.dantesouzaesouza.cadastroclientes.data.model.MeuRecyclerViewAdapter;
 
+//******************************************************
+
+//Instituto Federal de São Paulo - Campus Sertãozinho
+
+//Disciplina......: M4DADM
+
+//Programação de Computadores e Dispositivos Móveis
+
+//Aluno...........: Dante Souza e Souza
+
+//******************************************************
+
+
+
 public class ListaActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
     RecyclerView meuRecyclerView;
     List<Cliente> clientes;
     MeuRecyclerViewAdapter recyclerViewAdapter;
+    SQLiteDatabase meuBanco;
+    Boolean carregado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +69,7 @@ public class ListaActivity extends AppCompatActivity {
         criaTela();
     }
 
-    public void criaTela(){
+    public void criaTela(){ //Monta UI
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Lista de Clientes");
@@ -75,25 +93,27 @@ public class ListaActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         meuRecyclerView.setLayoutManager(linearLayoutManager);
 
-        RecycleClick.addTo(meuRecyclerView).setOnItemLongClickListener((recyclerView, position, v) -> {
+        RecycleClick.addTo(meuRecyclerView).setOnItemLongClickListener((recyclerView, position, v) -> { //Permite deletar itens da lista com clique longo
+            Log.i("Posicao Clicada:", Integer.toString(position));
+            AlertDialog.Builder builder = new AlertDialog.Builder(ListaActivity.this); //alerta pra confirmar deleção
+            builder.setMessage("Deletar cliente?");    //seta mensagem
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(ListaActivity.this); //alert for confirm to delete
-            builder.setMessage("Deletar cliente?");    //set message
-
-            //when click on DELETE
-            //not removing items if cancel is done
+            //quando clicar DELETE
+            //não remove o item se "Cancelar" é clicado
             final AlertDialog dialog = builder.setPositiveButton("SIM!", (dialog1, which) -> {
-                recyclerViewAdapter.notifyItemRemoved(position);    //item removed from recylcerview
-                clientes.remove(position);  //then remove item
+                recyclerViewAdapter.notifyItemRemoved(position);    //item removido do RecyclerView
+                clientes.remove(position);  //remove o item da lista
+                operacoesBanco();
+                removeDoBanco(position);
             }).setNegativeButton("CANCELAR", (dialog12, which) -> {
-                recyclerViewAdapter.notifyItemRemoved(position + 1);    //notifies the RecyclerView Adapter that data in adapter has been removed at a particular position.
-                recyclerViewAdapter.notifyItemRangeChanged(position, recyclerViewAdapter.getItemCount());   //notifies the RecyclerView Adapter that positions of element in adapter has been changed from position(removed element index to end of list), please update it.
+                recyclerViewAdapter.notifyItemRemoved(position + 1);    //notifica o RecyclerView Adapter que o dado foi removido do adapter na posição x".
+                recyclerViewAdapter.notifyItemRangeChanged(position, recyclerViewAdapter.getItemCount());   //notifica o RecyclerView Adapter que as posições dos elementos do adapter mudaram (removido item do fim da lista), então atualize a lista.
             }).create();
             dialog.setOnShowListener(arg0 -> {
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.GREEN);
             });
-            dialog.show();//shows alert dialog
+            dialog.show();//mostra caixa de alerta
 
             return false;
         });
@@ -102,14 +122,14 @@ public class ListaActivity extends AppCompatActivity {
 
     }
 
-    public void chamaCadastro(){
+    public void chamaCadastro(){ //chama tela de Cadastro de Item
         Intent cadastraCliente = new Intent(getApplicationContext(), CadastraActivity.class);
         startActivity(cadastraCliente);
         finishAffinity();
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed(){ // volta para a tela inicial
         Intent mainIntent = new Intent(getApplicationContext(), TelaInicialActivity.class);
         startActivity(mainIntent);
         finish();
@@ -119,5 +139,45 @@ public class ListaActivity extends AppCompatActivity {
         return clientes == null ? 0 : clientes.size();
     }
 
+    public void operacoesBanco(){ //abre banco de dados para operações
+        try{
+            meuBanco = getApplicationContext().openOrCreateDatabase("Clientes",MODE_PRIVATE, null);
+            if (meuBanco.isOpen()) {
+                meuBanco.execSQL("CREATE TABLE IF NOT EXISTS clientes (codigo PRIMARY KEY AUTOINCREMENT, nome VARCHAR, cpf BIGINT, idade INTEGER, telefone BIGINT, cidade VARCHAR, data BIGINT)");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void removeDoBanco(int posicao){ //Remove item do banco
+        int codigoDeletar;
+        Log.w("Posicao a deletar", Integer.toString(posicao));
+
+
+        Log.e("tamanho ArrayList", Integer.toString(clientes.size()));
+
+        String selectQuery = "SELECT codigo FROM " + "clientes";
+        Cursor cursor = meuBanco.rawQuery(selectQuery, null);
+        cursor.moveToLast();
+        int maxCodigo = cursor.getPosition();
+        Log.e("Maior código", Integer.toString(maxCodigo));
+
+        if (clientes != null && clientes.size() > posicao) {
+            codigoDeletar = (clientes.get(posicao-1).getCodigo());
+            Log.e("Código a deletar", Integer.toString(codigoDeletar));
+            String sql = "DELETE FROM clientes WHERE codigo='"+codigoDeletar+"'";
+            Log.e("SQL", sql);
+            if (meuBanco.isOpen()){
+                meuBanco.execSQL(sql);
+
+            }
+        }
+
+
+
+        meuBanco.close(); // fecha o banco de dados
+    }
 
 }

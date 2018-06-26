@@ -83,7 +83,7 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_add_white_48dp"
+        android:src="@drawable/baseline_search_white_48"
         app:backgroundTint="@android:color/holo_red_dark"
         app:layout_anchorGravity="bottom|end" />
 

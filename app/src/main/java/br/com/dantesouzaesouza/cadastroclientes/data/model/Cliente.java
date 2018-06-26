@@ -5,9 +5,9 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
-public class Cliente implements Parcelable {
+public class Cliente implements Parcelable { //Classe de apoio para dados de Clientes
 
-
+   int codigo;
    String nome;
    long cpf;
    int idade;
@@ -16,8 +16,8 @@ public class Cliente implements Parcelable {
    long dataCadastro;
 
    protected Cliente(Parcel in) {
+      codigo = in.readInt();
       nome = in.readString();
-
       cpf = in.readLong();
       idade = in.readInt();
       telefone = in.readLong();
@@ -37,9 +37,9 @@ public class Cliente implements Parcelable {
       }
    };
 
-   public Cliente( String nome, long cpf, int idade, long telefone, String cidade, long dataCadastro) {
+   public Cliente(int codigo, String nome, long cpf, int idade, long telefone, String cidade, long dataCadastro) {
+      this.codigo = codigo;
       this.nome = nome;
-
       this.cpf = cpf;
       this.idade = idade;
       this.telefone = telefone;
@@ -47,7 +47,13 @@ public class Cliente implements Parcelable {
       this.dataCadastro = dataCadastro;
    }
 
+   public int getCodigo() {
+      return codigo;
+   }
 
+   public void setCodigo(int codigo) {
+      this.codigo = codigo;
+   }
 
    public String getNome() {
       return nome;
@@ -103,7 +109,8 @@ public class Cliente implements Parcelable {
    @Override
    public String toString() {
       return "Cliente{" +
-              "nome='" + nome + '\'' +
+              "codigo='" + codigo+ '\'' +
+              ", nome='" + nome + '\'' +
               ", cpf=" + cpf +
               ", idade=" + idade +
               ", telefone=" + telefone +
@@ -119,6 +126,7 @@ public class Cliente implements Parcelable {
 
    @Override
    public void writeToParcel(Parcel dest, int flags) {
+      dest.writeInt(codigo);
       dest.writeString(nome);
       dest.writeLong(cpf);
       dest.writeInt(idade);
