@@ -120,6 +120,7 @@ public class CadastraActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(CadastraActivity.this);
             builder.setMessage("ERRO! Favor preencher todos os campos para prosseguir!");
             final AlertDialog dialog = builder.setNeutralButton("OK", (dialog1, which) -> {
+
             }).create();
             dialog.setOnShowListener(arg0 -> dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.BLACK));
             dialog.show();
@@ -143,7 +144,7 @@ public class CadastraActivity extends AppCompatActivity {
             Log.w("Valor a salvar", cliente.toString());
             salvaNoDb(cliente);
             chamaLista();
-            Log.i("Salvou?", cliente.toString());
+
         }
     }
 
@@ -221,7 +222,9 @@ public class CadastraActivity extends AppCompatActivity {
 
         try {
             while (c.moveToNext()) {
-                Cliente item = new Cliente(c.getInt(codigoIndex) ,c.getString(nomeIndex), c.getLong(cpfIndex), c.getInt(idadeIndex), c.getLong(telefoneIndex), c.getString(cidadeIndex), c.getLong(dataIndex));
+                Cliente item = new Cliente(c.getInt(codigoIndex) ,c.getString(nomeIndex),
+                        c.getLong(cpfIndex), c.getInt(idadeIndex), c.getLong(telefoneIndex),
+                        c.getString(cidadeIndex), c.getLong(dataIndex));
                 clientes.add(item);
                 Log.e("Item", item.toString());
 

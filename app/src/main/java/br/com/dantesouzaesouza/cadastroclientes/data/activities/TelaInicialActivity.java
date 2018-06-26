@@ -123,7 +123,9 @@ public class TelaInicialActivity extends AppCompatActivity {
 
         try {
             while (c.moveToNext()) {
-                Cliente item = new Cliente(c.getInt(codigoIndex), c.getString(nomeIndex), c.getLong(cpfIndex), c.getInt(idadeIndex), c.getLong(telefoneIndex), c.getString(cidadeIndex), c.getLong(dataIndex));
+                Cliente item = new Cliente(c.getInt(codigoIndex), c.getString(nomeIndex),
+                        c.getLong(cpfIndex), c.getInt(idadeIndex), c.getLong(telefoneIndex),
+                        c.getString(cidadeIndex), c.getLong(dataIndex));
                 clientes.add(item);
                 Log.e("Item", item.toString());
 

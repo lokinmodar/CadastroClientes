@@ -46,7 +46,17 @@ public class MeuRecyclerViewAdapter extends RecyclerView.Adapter<PersonViewHolde
     @Override
     public void onBindViewHolder(@NonNull PersonViewHolder holder, int position) {
         holder.nomeTextView.setText("Nome: " + clientes.get(position).getNome());
-        holder.cpfTextView.setText("CPF: " + Formatador.CPF.formata(String.valueOf(clientes.get(position).getCpf())));
+        if (String.valueOf(clientes.get(position).getCpf()).length() < 11) {
+            String cpf = String.valueOf(clientes.get(position).getCpf());
+            int tamanho = cpf.length();
+            while (tamanho < 11) {
+                cpf = "0" + cpf;
+                tamanho++;
+            }
+            holder.cpfTextView.setText("CPF: " + Formatador.CPF.formata(cpf));
+        } else {
+            holder.cpfTextView.setText("CPF: " + Formatador.CPF.formata(String.valueOf(clientes.get(position).getCpf())));
+        }
         holder.idadeTextView.setText("Idade: " + String.valueOf(clientes.get(position).getIdade()));
         holder.telefoneTextView.setText("Telefone: " + Formatador.TELEFONE.formata(String.valueOf(clientes.get(position).getTelefone())));
         holder.cidadeTextView.setText("Cidade: "+ clientes.get(position).getCidade());
@@ -67,5 +77,7 @@ public class MeuRecyclerViewAdapter extends RecyclerView.Adapter<PersonViewHolde
 
     public void removeItem(int position){
         clientes.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, clientes.size());
     }
 }

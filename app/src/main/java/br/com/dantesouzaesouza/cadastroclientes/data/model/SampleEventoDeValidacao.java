@@ -1,8 +1,10 @@
 package br.com.dantesouzaesouza.cadastroclientes.data.model;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
 
 import br.com.concrete.canarinho.watcher.evento.EventoDeValidacao;
 
@@ -28,12 +30,14 @@ public class SampleEventoDeValidacao implements EventoDeValidacao { //para valid
 
     @Override
     public void totalmenteValido(String valorAtual) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(textInputLayout.getContext())
+
+        Toast.makeText(textInputLayout.getContext(), "CPF: "+ valorAtual + " Válido!", Toast.LENGTH_LONG).show();
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(textInputLayout.getContext())
                 .setTitle("CPF Válido!")
                 .setMessage(valorAtual);
         final AlertDialog dialog = builder.setNeutralButton("OK", (dialog1, which) -> {
         }).create();
         dialog.setOnShowListener(arg0 -> dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.BLACK));
-        dialog.show();
+        dialog.show();*/
     }
 }
