@@ -142,7 +142,7 @@ public class ListaActivity extends AppCompatActivity {
         try {
             meuBanco = getApplicationContext().openOrCreateDatabase("Clientes", MODE_PRIVATE, null);
             if (meuBanco.isOpen()) {
-                meuBanco.execSQL("CREATE TABLE IF NOT EXISTS clientes (codigo PRIMARY KEY AUTOINCREMENT, nome VARCHAR, cpf BIGINT, idade INTEGER, telefone BIGINT, cidade VARCHAR, data BIGINT)");
+                meuBanco.execSQL("CREATE TABLE IF NOT EXISTS clientes (codigo PRIMARY KEY, nome VARCHAR, cpf BIGINT, idade INTEGER, telefone BIGINT, cidade VARCHAR, data BIGINT)");
             }
         } catch (Exception e) {
             e.printStackTrace();

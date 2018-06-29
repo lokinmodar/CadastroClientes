@@ -105,7 +105,7 @@ public class CadastraActivity extends AppCompatActivity {
         try{
             meuBanco = getApplicationContext().openOrCreateDatabase("Clientes",MODE_PRIVATE, null);
             if (meuBanco.isOpen()) {
-                meuBanco.execSQL("CREATE TABLE IF NOT EXISTS clientes (codigo PRIMARY KEY AUTOINCREMENT, nome VARCHAR, cpf BIGINT, idade INTEGER, telefone BIGINT, cidade VARCHAR, data BIGINT)");
+                meuBanco.execSQL("CREATE TABLE IF NOT EXISTS clientes (codigo PRIMARY KEY, nome VARCHAR, cpf BIGINT, idade INTEGER, telefone BIGINT, cidade VARCHAR, data BIGINT)");
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class CadastraActivity extends AppCompatActivity {
             String selectQuery = "SELECT codigo FROM " + "clientes";
             Cursor cursor = meuBanco.rawQuery(selectQuery, null);
             cursor.moveToLast();
-            int codigo = cursor.getCount()-1;
+            int codigo = cursor.getCount()+1;
             Log.w("Valor do cursor", Integer.toString(codigo));
 
 
